@@ -1,0 +1,19 @@
+name: 'Escape given string'
+description: 'Escape given string'
+inputs:
+  text:
+    description: "commit message is to be used during push"
+    default: "Automated commit"
+    required: true
+    
+outputs:
+  text:
+    description: "Escaped text"
+    value: ${{ steps.escape-string.outputs.escaped-text }}
+    
+runs:
+  using: "composite"
+  steps:
+    - id: escape-string
+      run: echo "escaped-text$(<<< ${{ inputs.text }} sed -e 's`[][\\/.*^${}+|]`\\&`g')" >> $GITHUB_OUTPUT
+      shell: bash
