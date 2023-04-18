@@ -15,5 +15,5 @@ runs:
   using: "composite"
   steps:
     - id: escape-string
-      run: echo "escaped-text$(<<< ${{ inputs.text }} sed -e 's`[][\\/.*^${}+|]`\\&`g')" >> $GITHUB_OUTPUT
+      run: echo "escaped-text=$(<<< ${{ inputs.text }} sed -e 's`[][\\/.*^${}+|]`\\&`g')" >> $GITHUB_OUTPUT
       shell: bash
